@@ -11,6 +11,7 @@
     "rules": {
         "no-console": "off",
         "quotes": ["error", "double"],
-        "no-plusplus": "off"
+        "no-plusplus": "off",
+        "no-var": 0
     }
 }
