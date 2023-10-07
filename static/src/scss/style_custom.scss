@@ -42,18 +42,11 @@ footer {
     }
 }
 
-#loginOrRegister,
+.logoString_h3,
 #headerGreeting {
     font-family: $font-family-JetBrains;
 }
-#loginOrRegister span:first-child,
-#loginOrRegister span:nth-child(3) {
-    color: $custom_white;
-}
 
-#loginOrRegister span:nth-child(2) {
-    color: $custom_red;
-}
 
 #content_main {
     width: 100%;

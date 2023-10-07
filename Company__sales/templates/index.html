@@ -23,7 +23,7 @@
             <!-- HEADER -->
             <header class="d-flex flex-wrap align-items-center justify-content-between py-3 border-bottom">
                 <a href="/" class="my-3 col-lg-auto col-12 text-center">
-                    <img src="{% static 'favicon_io/favicon-32x32.png' %}" alt="Home page logo" />
+                    <img src="{% static 'favicon_io/apple-touch-icon.png' %}" alt="Home page logo" width="25%" height="25%"/>
                 </a>
                 {% if user.is_authenticated %}
                 <ul class="nav col-lg-auto col-12 me-lg-auto mb-lg-0 mb-3 d-flex justify-content-center">
@@ -44,9 +44,9 @@
                                 id="search_field"
                                 name="search_field"
                                 class="form-control"
-                                placeholder="Search field..."
+                                placeholder="..."
                                 aria-label="Search filed"
-                                value="Search field"
+                                value="..."
                             />
                             <label for="search_card text-center">Search field:</label>
                         </div>
@@ -128,14 +128,24 @@
             <div id="content_main" class="border border-2 rounded rounded-2 mt-2 shadow-lg">
                 {% block content %}
                 <div class="d-flex align-items-center flex-column mt-5">
-                    <h3 class="text-center">Company sales<br> data</h3>
+                    <div class="logoString_h3 mb-3">
+                        <h3 class="text-center">Company sales</h3>
+                        <h4 class="text-center">database</h4>
+                    </div>
                     <ul id="ul_get_started">
-                        <li>Here you can find out information about Company's sales</li>
-                        <li>Also you can add some new data</li>
+                        <li>Here you can find out information about:
+                            <ul>
+                                <li>Customers;</li>
+                                <li>Sellers;</li>
+                                <li>Items;</li>
+                                <li>Сompleted sales;</li>
+                            </ul>
+                        </li>
+                        <li>Also you can add some new data to each part;</li>
                         <li>Hope you'll enjoy this simple app! &#128521;</li>
                     </ul>
                 </div>
-                <div class="row mb-3">
+                <div class="row my-3">
                     <div class="col-12 d-flex justify-content-center">
                         <a href="#" class="btn btn-outline-secondary mx-1" title="Company sales">Company sales</a>
                     </div>
@@ -170,10 +180,10 @@
             <!-- greeting -->
             <!-- greeting -->
             <div class="d-flex flex-column align-items-center text-center">
-                <h3 id="loginOrRegister" style="color: rgb(92, 92, 92)">
+                <h3 class="logoString_h3" style="color: rgb(92, 92, 92)">
                     Company sales data
                 </h3>
-                <p class="text-center">Data information is available only for logged in users.</p>
+                <p class="text-center mt-3"><i>Data information is available only for logged in users.</i></p>
                 <a href="{% url 'login' %}" class="nav-link mt-5">Log in!</a>
                 <span>or</span>
                 <a href="{% url 'registration' %}" class="nav-link">Create an account!</a>

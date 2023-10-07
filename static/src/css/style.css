@@ -478,18 +478,9 @@ footer {
     flex-direction: unset;
   }
 }
-#loginOrRegister,
+.logoString_h3,
 #headerGreeting {
   font-family: "JetBrains Mono", monospace;
-}
-
-#loginOrRegister span:first-child,
-#loginOrRegister span:nth-child(3) {
-  color: rgb(220, 220, 220);
-}
-
-#loginOrRegister span:nth-child(2) {
-  color: rgb(223, 14, 14);
 }
 
 #content_main {
