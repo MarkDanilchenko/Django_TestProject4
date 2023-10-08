@@ -80,3 +80,26 @@ class SellerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Seller, SellerAdmin)
+
+
+class SaleAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (
+            "Sale details",
+            {
+                "fields": (
+                    "item",
+                    "seller",
+                    "customer",
+                    "date_of_sale",
+                    "price",
+                )
+            },
+        ),
+    )
+    list_display = ("item", "date_of_sale", "price")
+    search_fields = ("item", "date_of_sale")
+    list_filter = ("item", "date_of_sale", "price")
+
+
+admin.site.register(models.Sale, SaleAdmin)

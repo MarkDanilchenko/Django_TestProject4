@@ -1,3 +1,5 @@
+import datetime
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -50,9 +52,38 @@ class Seller(models.Model):
     date_of_employment = models.DateField(
         help_text="Enter date of employment", verbose_name="Seller date of employment"
     )
-    choices = [("Seller", "Seller"), ("Senior Manager", "Senior Manager"), ("Head of department", "Head of department")]
-    position = models.CharField(max_length=100, choices=choices, help_text="Enter position", verbose_name="Seller position")
+    choices = [
+        ("Seller", "Seller"),
+        ("Senior Manager", "Senior Manager"),
+        ("Head of department", "Head of department"),
+    ]
+    position = models.CharField(
+        max_length=100,
+        choices=choices,
+        help_text="Enter position",
+        verbose_name="Seller position",
+    )
 
     def __str__(self):
         return self.name, self.surname, self.position
-    
+
+
+def checkDate(value):
+    if value > datetime.datetime.today():
+        raise ValidationError(
+            "Date cannot be in the future. Please enter a date in the past or current date."
+        )
+    else:
+        return value
+
+
+class Sale(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    date_of_sale = models.DateField(
+        help_text="Enter date of sale",
+        verbose_name="Date of sale",
+        validators=[checkDate],
+    )
+    price = models.DecimalField(max_digits=10, decimal_places=2, help_text="Enter price", verbose_name="Price", default=0.00)
