@@ -1,0 +1,47 @@
+{% extends 'DBCategories.html' %} {% block DBcontent %} {% autoescape off %} {% if result %}
+<div class="row">
+	<div class="offset-1 col-10 table-responsive">
+		<table class="table table-striped table-bordered table-sm text-center caption-top">
+			<caption class="text-center">
+				<div class="d-flex justify-content-between">
+					<span>Customer data</span>
+					<span><a href="{% url 'addCustomer' %}" class="nav-link text-center">&#43; Add customer</a></span>
+				</div>
+			</caption>
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Surname</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for i in result %}
+				<tr>
+					<th scope="row">{{forloop.counter}}</th>
+					<td>{{i.name}}</td>
+					<td>{{i.surname}}</td>
+					<td>{{i.email}}</td>
+					<td>{{i.phone}}</td>
+					<td><a href="{% url 'deleteCustomer' i.id %}" class="nav-link text-center">&#10008;</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="offset-2 col-8">
+		<a href="{% url 'addCustomer' %}" class="nav-link text-center">Add customer</a>
+	</div>
+</div>
+{% elif empty_result %}
+<div class="d-flex flex-column align-items-center">
+	<h5 class="text-center logoString_h5">{{empty_result}}</h5>
+	<span>&#9660;</span>
+	<a href="{% url 'addCustomer' %}" class="nav-link text-center">Add customer</a>
+</div>
+{% endif %} {% endautoescape %} {% endblock %}

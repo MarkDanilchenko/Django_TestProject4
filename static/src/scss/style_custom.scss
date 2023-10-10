@@ -43,6 +43,7 @@ footer {
 }
 
 .logoString_h3,
+.logoString_h5,
 #headerGreeting {
     font-family: $font-family-JetBrains;
 }
@@ -53,8 +54,7 @@ footer {
     min-height: 80vh;
 }
 
-#ul_get_started,
-#ul_card_technicalParameters {
+#ul_get_started {
     list-style-type: none;
     li::marker {
         content: '\27A7';
@@ -62,6 +62,7 @@ footer {
     li {
         padding-left: 15px;
     }
+    line-height: 40px;
 }
 
 // del/ins remark at welcome page

@@ -479,6 +479,7 @@ footer {
   }
 }
 .logoString_h3,
+.logoString_h5,
 #headerGreeting {
   font-family: "JetBrains Mono", monospace;
 }
@@ -488,16 +489,14 @@ footer {
   min-height: 80vh;
 }
 
-#ul_get_started,
-#ul_card_technicalParameters {
+#ul_get_started {
   list-style-type: none;
+  line-height: 40px;
 }
-#ul_get_started li::marker,
-#ul_card_technicalParameters li::marker {
+#ul_get_started li::marker {
   content: "➧";
 }
-#ul_get_started li,
-#ul_card_technicalParameters li {
+#ul_get_started li {
   padding-left: 15px;
 }
 
