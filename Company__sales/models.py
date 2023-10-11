@@ -42,7 +42,7 @@ class Customer(models.Model):
     )
 
     def __str__(self):
-        return "%s %s" % (self.name, self.surname)
+        return "%s %s;" % (self.name, self.surname)
 
 
 class Item(models.Model):
@@ -61,7 +61,7 @@ class Item(models.Model):
     )
 
     def __str__(self):
-        return "%s %s" % (self.name, self.price)
+        return "Item|Price: %s | %s$;" % (self.name, self.price)
 
 
 class Seller(models.Model):
@@ -99,7 +99,7 @@ class Seller(models.Model):
     )
 
     def __str__(self):
-        return "%s %s %s" % (self.name, self.surname, self.position)
+        return "%s %s - %s" % (self.name, self.surname, self.position)
 
 
 class Sale(models.Model):

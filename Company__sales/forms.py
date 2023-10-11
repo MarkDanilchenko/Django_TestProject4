@@ -120,7 +120,35 @@ class ItemForm(forms.ModelForm):
     )
 
 
-# class SaleForm(forms.ModelForm):
-#     class Meta:
-#         model = models.Sale
-#         fields = ["item", "seller", "date_of_sale"]
+class SaleForm(forms.ModelForm):
+    class Meta:
+        model = models.Sale
+        fields = ["item", "seller", "customer", "date_of_sale"]
+
+    item = forms.ModelChoiceField(
+        queryset=models.Item.objects.all(),
+        required=True,
+        label="Item",
+        help_text="Select item",
+    )
+
+    seller = forms.ModelChoiceField(
+        queryset=models.Seller.objects.all(),
+        required=True,
+        label="Seller",
+        help_text="Select seller",
+    )
+
+    customer = forms.ModelChoiceField(
+        queryset=models.Customer.objects.all(),
+        required=True,
+        label="Customer",
+        help_text="Select customer",
+    )
+
+    date_of_sale = forms.DateField(
+        widget=forms.DateInput(attrs={"type": "date"}),
+        required=True,
+        label="Date of sale",
+        help_text="Enter date of sale",
+    )

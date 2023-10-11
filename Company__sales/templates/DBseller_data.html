@@ -4,12 +4,12 @@
 		<table class="table table-striped table-bordered table-sm text-center caption-top">
 			<caption class="text-center">
 				<div class="d-flex justify-content-between">
-					<span>Seller data</span>
+					<span>Sellers data</span>
 					<span><a href="{% url 'addSeller' %}" class="nav-link text-center">&#43; Add seller</a></span>
 				</div>
 			</caption>
 			<thead>
-				<tr>
+				<tr class="align-middle">
 					<th scope="col">#</th>
 					<th scope="col">Name</th>
 					<th scope="col">Surname</th>
@@ -22,7 +22,7 @@
 			</thead>
 			<tbody class="table-group-divider">
 				{% for i in result %}
-				<tr>
+				<tr class="align-middle">
 					<th scope="row">{{forloop.counter}}</th>
 					<td>{{i.name}}</td>
 					<td>{{i.surname}}</td>

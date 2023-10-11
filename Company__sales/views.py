@@ -125,4 +125,32 @@ def deleteItem(request, id):
 
 # Sales functions
 def viewDBSale(request):
-    return render(request, "DBsale_data.html")
+    try:
+        result = models.Sale.objects.all()
+        if not result.exists():
+            raise Exception
+        else:
+            return render(request, "DBsale_data.html", {"result": result})
+    except Exception:
+        empty_result = "Sales' data is <span style='color: rgb(223, 14, 14);'>empty.</span><br><br> Please add any sale information first."
+        return render(request, "DBsale_data.html", {"empty_result": empty_result})
+
+
+def addSale(request):
+    form = forms.SaleForm()
+    if request.method == "POST":
+        form = forms.SaleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/DBCategories/DBsale")
+
+    return render(request, "addSale.html", {"form": form})
+
+
+def deleteSale(request, id):
+    try:
+        if models.Sale.objects.filter(id=id).exists():
+            models.Sale.objects.get(id=id).delete()
+        return redirect("/DBCategories/DBsale")
+    except:
+        return redirect("/DBCategories/DBsale")
