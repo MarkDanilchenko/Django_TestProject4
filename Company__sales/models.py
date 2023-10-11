@@ -6,12 +6,21 @@ import re
 
 
 def phone_validator(value):
-    pattern = r'^\+[0-9]{11}$'
+    pattern = r"^\+[0-9]{11}$"
     try:
         re.match(pattern, value).group()
         return value
     except:
-        raise ValidationError('Enter phone in the format +00000000000')
+        raise ValidationError("Enter phone in the format +00000000000")
+
+
+def checkDate(value):
+    if value > datetime.date.today():
+        raise ValidationError(
+            "Date cannot be in the future. Please enter a date in the past or current date."
+        )
+    else:
+        return value
 
 
 class Customer(models.Model):
@@ -33,7 +42,7 @@ class Customer(models.Model):
     )
 
     def __str__(self):
-        return '%s %s' % (self.name, self.surname)
+        return "%s %s" % (self.name, self.surname)
 
 
 class Item(models.Model):
@@ -59,10 +68,16 @@ class Seller(models.Model):
         help_text="Enter email", unique=True, verbose_name="Seller email"
     )
     phone = models.CharField(
-        max_length=12, help_text="Enter phone", unique=True, verbose_name="Seller phone", validators=[phone_validator]
+        max_length=12,
+        help_text="Enter phone",
+        unique=True,
+        verbose_name="Seller phone",
+        validators=[phone_validator],
     )
     date_of_employment = models.DateField(
-        help_text="Enter date of employment", verbose_name="Seller date of employment"
+        help_text="Enter date of employment",
+        verbose_name="Seller date of employment",
+        validators=[checkDate],
     )
     choices = [
         ("Seller", "Seller"),
@@ -77,16 +92,7 @@ class Seller(models.Model):
     )
 
     def __str__(self):
-        return '%s %s %s' % (self.name, self.surname, self.position)
-
-
-def checkDate(value):
-    if value > datetime.datetime.today():
-        raise ValidationError(
-            "Date cannot be in the future. Please enter a date in the past or current date."
-        )
-    else:
-        return value
+        return "%s %s %s" % (self.name, self.surname, self.position)
 
 
 class Sale(models.Model):
@@ -98,10 +104,16 @@ class Sale(models.Model):
         verbose_name="Date of sale",
         validators=[checkDate],
     )
-    price = models.DecimalField(max_digits=10, decimal_places=2, help_text="Enter price", verbose_name="Price", default=0.00)
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        help_text="Enter price",
+        verbose_name="Price",
+        default=0.00,
+    )
 
     def __str__(self):
-        return '%s %s %s' % (
+        return "%s %s %s" % (
             self.item,
             self.date_of_sale,
             self.price,
