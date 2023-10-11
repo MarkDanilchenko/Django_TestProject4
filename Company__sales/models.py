@@ -52,9 +52,16 @@ class Item(models.Model):
     description = models.TextField(
         help_text="Enter description", verbose_name="Item description"
     )
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        help_text="Enter price, $",
+        verbose_name="Price, $",
+        default=0.00,
+    )
 
     def __str__(self):
-        return self.name
+        return "%s %s" % (self.name, self.price)
 
 
 class Seller(models.Model):
@@ -104,17 +111,6 @@ class Sale(models.Model):
         verbose_name="Date of sale",
         validators=[checkDate],
     )
-    price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        help_text="Enter price",
-        verbose_name="Price",
-        default=0.00,
-    )
 
     def __str__(self):
-        return "%s %s %s" % (
-            self.item,
-            self.date_of_sale,
-            self.price,
-        )
+        return "%s %s %s" % (self.item.name, self.item.price, self.date_of_sale)

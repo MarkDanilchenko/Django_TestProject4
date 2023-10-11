@@ -12,8 +12,8 @@ urlpatterns_dbCategories = [
     re_path(r"DBseller/deleteSeller/(?P<id>\d+)", views.deleteSeller, name='deleteSeller'),
     # 
     path('DBitem', views.viewDBItem, name='viewDBItem'),
-    # path('DBitem/addItem', views.addItem, name='addItem'),
-    # re_path(r"DBitem/deleteItem/(?P<id>\d+)", views.deleteItem, name='deleteItem'),
+    path('DBitem/addItem', views.addItem, name='addItem'),
+    re_path(r"DBitem/deleteItem/(?P<id>\d+)", views.deleteItem, name='deleteItem'),
     # 
     path('DBsale', views.viewDBSale, name='viewDBSale'),
     # 

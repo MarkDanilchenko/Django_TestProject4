@@ -81,9 +81,7 @@ class SellerForm(forms.ModelForm):
         required=True,
         label="Date of employment",
         help_text="Enter seller's employment date",
-        
     )
-
     position = forms.ChoiceField(
         required=True,
         choices=[
@@ -94,3 +92,35 @@ class SellerForm(forms.ModelForm):
         label="Position",
         help_text="Enter seller's position",
     )
+
+
+class ItemForm(forms.ModelForm):
+    class Meta:
+        model = models.Item
+        fields = ["name", "description", "price"]
+
+    name = forms.CharField(
+        max_length=100,
+        required=True,
+        label="Item name",
+        help_text="Enter item name",
+    )
+
+    description = forms.CharField(
+        widget=forms.Textarea,
+        required=True,
+        label="Item description",
+        help_text="Enter item description",
+    )
+
+    price = forms.FloatField(
+        required=True,
+        label="Item price",
+        help_text="Enter item price, $",
+    )
+
+
+# class SaleForm(forms.ModelForm):
+#     class Meta:
+#         model = models.Sale
+#         fields = ["item", "seller", "date_of_sale"]

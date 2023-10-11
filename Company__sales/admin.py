@@ -35,10 +35,11 @@ class ItemAdmin(admin.ModelAdmin):
     fieldsets = (
         ("Item name", {"fields": ("name",)}),
         ("Item description", {"fields": ("description",)}),
+        ("Item price", {"fields": ("price",)}),
     )
-    list_display = ("name",)
+    list_display = ("name", "description", "price")
     search_fields = ("name",)
-    list_filter = ("name",)
+    list_filter = ("name", "price")
 
 
 admin.site.register(models.Item, ItemAdmin)
@@ -74,9 +75,16 @@ class SellerAdmin(admin.ModelAdmin):
             },
         ),
     )
-    list_display = ("name", "surname", "position", "date_of_employment")
-    search_fields = ("name", "surname")
-    list_filter = ("name", "surname")
+    list_display = (
+        "name",
+        "surname",
+        "email",
+        "phone",
+        "position",
+        "date_of_employment",
+    )
+    search_fields = ("name", "surname", "position", "date_of_employment")
+    list_filter = ("name", "surname", "position", "date_of_employment")
 
 
 admin.site.register(models.Seller, SellerAdmin)
@@ -92,14 +100,13 @@ class SaleAdmin(admin.ModelAdmin):
                     "seller",
                     "customer",
                     "date_of_sale",
-                    "price",
                 )
             },
         ),
     )
-    list_display = ("item", "date_of_sale", "price")
+    list_display = ("item", "date_of_sale")
     search_fields = ("item", "date_of_sale")
-    list_filter = ("item", "date_of_sale", "price")
+    list_filter = ("item", "date_of_sale")
 
 
 admin.site.register(models.Sale, SaleAdmin)

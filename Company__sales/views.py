@@ -33,7 +33,7 @@ def viewDBCustomer(request):
         else:
             return render(request, "DBcustomer_data.html", {"result": result})
     except Exception:
-        empty_result = "Customers's data is <span style='color: rgb(223, 14, 14);'>empty.</span><br><br> Please add any customer information first."
+        empty_result = "Customers' data is <span style='color: rgb(223, 14, 14);'>empty.</span><br><br> Please add any customer information first."
         return render(request, "DBcustomer_data.html", {"empty_result": empty_result})
 
 
@@ -66,7 +66,7 @@ def viewDBSeller(request):
         else:
             return render(request, "DBseller_data.html", {"result": result})
     except Exception:
-        empty_result = "Sellers's data is <span style='color: rgb(223, 14, 14);'>empty.</span><br><br> Please add any seller information first."
+        empty_result = "Sellers' data is <span style='color: rgb(223, 14, 14);'>empty.</span><br><br> Please add any seller information first."
         return render(request, "DBseller_data.html", {"empty_result": empty_result})
 
 
@@ -92,7 +92,35 @@ def deleteSeller(request, id):
 
 # Item functions
 def viewDBItem(request):
-    return render(request, "DBitem_data.html")
+    try:
+        result = models.Item.objects.all()
+        if not result.exists():
+            raise Exception
+        else:
+            return render(request, "DBitem_data.html", {"result": result})
+    except Exception:
+        empty_result = "Items' data is <span style='color: rgb(223, 14, 14);'>empty.</span><br><br> Please add any item information first."
+        return render(request, "DBitem_data.html", {"empty_result": empty_result})
+
+
+def addItem(request):
+    form = forms.ItemForm()
+    if request.method == "POST":
+        form = forms.ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/DBCategories/DBitem")
+
+    return render(request, "addItem.html", {"form": form})
+
+
+def deleteItem(request, id):
+    try:
+        if models.Item.objects.filter(id=id).exists():
+            models.Item.objects.get(id=id).delete()
+        return redirect("/DBCategories/DBitem")
+    except:
+        return redirect("/DBCategories/DBitem")
 
 
 # Sales functions
