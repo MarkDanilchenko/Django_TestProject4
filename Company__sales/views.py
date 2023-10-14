@@ -57,6 +57,17 @@ def deleteCustomer(request, id):
         return redirect("/DBCategories/DBcustomer")
 
 
+def editCustomer(request, id):
+    customer = models.Customer.objects.get(id=id)
+    form = forms.CustomerForm(instance=customer)
+    if request.method == "POST":
+        form = forms.CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect("/DBCategories/DBcustomer")
+    return render(request, "editCustomer.html", {"form": form})
+
+
 # Seller functions
 def viewDBSeller(request):
     try:
@@ -88,6 +99,17 @@ def deleteSeller(request, id):
         return redirect("/DBCategories/DBseller")
     except:
         return redirect("/DBCategories/DBseller")
+
+
+def editSeller(request, id):
+    seller = models.Seller.objects.get(id=id)
+    form = forms.SellerForm(instance=seller)
+    if request.method == "POST":
+        form = forms.SellerForm(request.POST, instance=seller)
+        if form.is_valid():
+            form.save()
+            return redirect("/DBCategories/DBseller")
+    return render(request, "editSeller.html", {"form": form})
 
 
 # Item functions
@@ -123,6 +145,17 @@ def deleteItem(request, id):
         return redirect("/DBCategories/DBitem")
 
 
+def editItem(request, id):
+    item = models.Item.objects.get(id=id)
+    form = forms.ItemForm(instance=item)
+    if request.method == "POST":
+        form = forms.ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect("/DBCategories/DBitem")
+    return render(request, "editItem.html", {"form": form})
+
+
 # Sales functions
 def viewDBSale(request):
     try:
@@ -154,3 +187,14 @@ def deleteSale(request, id):
         return redirect("/DBCategories/DBsale")
     except:
         return redirect("/DBCategories/DBsale")
+
+
+def editSale(request, id):
+    sale = models.Sale.objects.get(id=id)
+    form = forms.SaleForm(instance=sale)
+    if request.method == "POST":
+        form = forms.SaleForm(request.POST, instance=sale)
+        if form.is_valid():
+            form.save()
+            return redirect("/DBCategories/DBsale")
+    return render(request, "editSale.html", {"form": form})

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-attma@j%9an^mt)y^a4ugnj^@x+f)c8hd8!0dj(r5=c=3d(k6h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -87,7 +87,7 @@ DATABASES = {
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('DATABASE_HOST'),
-        # 'PORT': os.getenv('DATABASE_PORT'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 

@@ -14,6 +14,7 @@
 					<th scope="col">Name</th>
 					<th scope="col">Description</th>
 					<th scope="col">Price, $</th>
+					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</tr>
 			</thead>
@@ -24,6 +25,7 @@
 					<td>{{i.name}}</td>
 					<td>{{i.description}}</td>
 					<td>{{i.price}}</td>
+					<td><a href="{% url 'editItem' i.id %}" class="nav-link text-center">&#9998;</a></td>
 					<td><a href="{% url 'deleteItem' i.id %}" class="nav-link text-center">&#10008;</a></td>
 				</tr>
 				{% endfor %}

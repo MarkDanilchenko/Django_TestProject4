@@ -26,18 +26,19 @@
 					<img src="{% static 'favicon_io/apple-touch-icon.png' %}" alt="Home page logo" width="50px" height="50px" />
 				</a>
 				{% if user.is_authenticated %}
-				<ul class="nav col-lg-auto col-12 me-lg-auto mb-lg-0 mb-3 d-flex justify-content-center">
+				<ul class="nav col-lg-auto col-12 mb-lg-0 mb-3 d-flex justify-content-center">
 					<li><a href="/" class="nav-link px-2">Home</a></li>
-					<li><a href="{% url 'viewDBCategories' %}" class="nav-link px-2">Company sales</a></li>
+					<li><a href="{% url 'viewDBCategories' %}" class="nav-link px-2">Database</a></li>
+					<li><a href="" class="nav-link px-2">Reports</a></li>
 				</ul>
 				<h6 class="text-center col-lg-auto col-12 mx-lg-auto mb-lg-0 mb-3" id="headerGreeting" style="color: rgb(92, 92, 92)">
 					Hello {{user.username}}!<br />
                     <br>You are in Company sales desktop database.
 				</h6>
 				<div
-					class="d-flex align-items-center justify-content-center col-lg-auto col-md-6 col-sm-6 col-8 offset-lg-0 offset-md-3 offset-sm-3 offset-2 ms-lg-auto me-2"
+					class="d-flex justify-content-end col-lg-auto col-10 offset-lg-0 offset-2"
 				>
-					<form action="#" method="post" class="col-7 me-2" role="search">
+					<!-- <form action="#" method="post" class="col-7 me-2" role="search">
 						{% csrf_token %}
 						<div class="form-floating">
 							<input
@@ -50,38 +51,38 @@
 							/>
 							<label for="search_field"><i>Search field:</i></label>
 						</div>
-					</form>
-					<a href="{% url 'logout' %}" class="col-4 btn btn-outline-danger text-center" style="height: 3.5rem; padding-top: 0.85rem;">Logout</a>
-				</div>
-				<!-- dark/light theme switch button -->
-				<div id="colorThemeSwitcher" class="d-flex align-items-center">
-					<label class="switch">
-						<input class="switch__input" type="checkbox" role="switch" id="colorMode_switcher" />
-
-						<svg class="switch__icon switch__icon--light" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
-							<g fill="none" stroke="#ffe100" stroke-width="1" stroke-linecap="round">
-								<circle cx="6" cy="6" r="2" />
-								<g stroke-dasharray="1.5 1.5">
-									<polyline points="6 10,6 11.5" transform="rotate(0,6,6)" />
-									<polyline points="6 10,6 11.5" transform="rotate(45,6,6)" />
-									<polyline points="6 10,6 11.5" transform="rotate(90,6,6)" />
-									<polyline points="6 10,6 11.5" transform="rotate(135,6,6)" />
-									<polyline points="6 10,6 11.5" transform="rotate(180,6,6)" />
-									<polyline points="6 10,6 11.5" transform="rotate(225,6,6)" />
-									<polyline points="6 10,6 11.5" transform="rotate(270,6,6)" />
-									<polyline points="6 10,6 11.5" transform="rotate(315,6,6)" />
+					</form> -->
+					<a href="{% url 'logout' %}" class="btn btn-outline-danger text-center me-3" style="height: 3.5rem; padding-top: 0.85rem;">Logout</a>
+					<!-- dark/light theme switch button -->
+					<div id="colorThemeSwitcher" class="d-flex align-items-center">
+						<label class="switch">
+							<input class="switch__input" type="checkbox" role="switch" id="colorMode_switcher" />
+	
+							<svg class="switch__icon switch__icon--light" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
+								<g fill="none" stroke="#ffe100" stroke-width="1" stroke-linecap="round">
+									<circle cx="6" cy="6" r="2" />
+									<g stroke-dasharray="1.5 1.5">
+										<polyline points="6 10,6 11.5" transform="rotate(0,6,6)" />
+										<polyline points="6 10,6 11.5" transform="rotate(45,6,6)" />
+										<polyline points="6 10,6 11.5" transform="rotate(90,6,6)" />
+										<polyline points="6 10,6 11.5" transform="rotate(135,6,6)" />
+										<polyline points="6 10,6 11.5" transform="rotate(180,6,6)" />
+										<polyline points="6 10,6 11.5" transform="rotate(225,6,6)" />
+										<polyline points="6 10,6 11.5" transform="rotate(270,6,6)" />
+										<polyline points="6 10,6 11.5" transform="rotate(315,6,6)" />
+									</g>
 								</g>
-							</g>
-						</svg>
-						<svg class="switch__icon switch__icon--dark" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
-							<g fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" transform="rotate(-45,6,6)">
-								<path
-									d="m9,10c-2.209,0-4-1.791-4-4s1.791-4,4-4c.304,0,.598.041.883.105-.995-.992-2.367-1.605-3.883-1.605C2.962.5.5,2.962.5,6s2.462,5.5,5.5,5.5c1.516,0,2.888-.613,3.883-1.605-.285.064-.578.105-.883.105Z"
-								/>
-							</g>
-						</svg>
-						<!-- <span class="switch__sr">Dark Mode</span> -->
-					</label>
+							</svg>
+							<svg class="switch__icon switch__icon--dark" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
+								<g fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" transform="rotate(-45,6,6)">
+									<path
+										d="m9,10c-2.209,0-4-1.791-4-4s1.791-4,4-4c.304,0,.598.041.883.105-.995-.992-2.367-1.605-3.883-1.605C2.962.5.5,2.962.5,6s2.462,5.5,5.5,5.5c1.516,0,2.888-.613,3.883-1.605-.285.064-.578.105-.883.105Z"
+									/>
+								</g>
+							</svg>
+							<!-- <span class="switch__sr">Dark Mode</span> -->
+						</label>
+					</div>
 				</div>
 				{% else %}
 				<div class="col-lg-auto col-12 d-flex align-items-center justify-content-end">
@@ -142,13 +143,15 @@
 								<li>Сompleted sales;</li>
 							</ul>
 						</li>
-						<li>Also you can add some new data to each part;</li>
+						<li>Add or edit data to each part using <i><b>the database</b></i>;</li>
+						<li>View additional database <i><b>reports</b></i>;</li>
 						<li>Hope you'll enjoy this simple app! &#128521;</li>
 					</ul>
 				</div>
 				<div class="row my-3">
 					<div class="col-12 d-flex justify-content-center">
-						<a href="{% url 'viewDBCategories' %}" class="btn btn-outline-secondary mx-1" title="Company sales">Company sales</a>
+						<a href="{% url 'viewDBCategories' %}" class="btn btn-outline-secondary mx-1" title="Company sales">Database</a>
+						<a href="" class="btn btn-outline-secondary mx-1" title="Company sales">Reports</a>
 					</div>
 				</div>
 				{% endblock %}

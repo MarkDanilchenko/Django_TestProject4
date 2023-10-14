@@ -11,6 +11,8 @@ node_modules/
 package-lock.json
 Task1.pdf
 Task2.pdf
+*.sql
+/db_data
 
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/

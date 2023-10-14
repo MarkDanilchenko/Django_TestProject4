@@ -15,6 +15,7 @@
 					<th scope="col">Surname</th>
 					<th scope="col">Email</th>
 					<th scope="col">Phone</th>
+					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</tr>
 			</thead>
@@ -26,6 +27,7 @@
 					<td>{{i.surname}}</td>
 					<td>{{i.email}}</td>
 					<td>{{i.phone}}</td>
+					<td><a href="{% url 'editCustomer' i.id %}" class="nav-link text-center">&#9998;</a></td>
 					<td><a href="{% url 'deleteCustomer' i.id %}" class="nav-link text-center">&#10008;</a></td>
 				</tr>
 				{% endfor %}

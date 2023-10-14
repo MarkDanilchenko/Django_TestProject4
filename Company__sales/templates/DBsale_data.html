@@ -16,6 +16,7 @@
 					<th scope="col">Price, $</th>
                     <th scope="col">Customer Info</th>
                     <th scope="col">Seller Info</th>
+					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</tr>
 			</thead>
@@ -28,7 +29,8 @@
                     <td>{{i.item.price}}</td>
                     <td>{{i.customer.name}} {{i.customer.surname}} <br>&#128222; : {{i.customer.phone}}</td>
                     <td>{{i.seller.name}} {{i.seller.surname}}, {{i.seller.position}} </td>
-					<td><a href="{% url 'deleteItem' i.id %}" class="nav-link text-center">&#10008;</a></td>
+					<td><a href="{% url 'editSale' i.id %}" class="nav-link text-center">&#9998;</a></td>
+					<td><a href="{% url 'deleteSale' i.id %}" class="nav-link text-center">&#10008;</a></td>
 				</tr>
 				{% endfor %}
 			</tbody>

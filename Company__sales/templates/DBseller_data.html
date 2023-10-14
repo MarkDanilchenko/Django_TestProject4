@@ -17,6 +17,7 @@
 					<th scope="col">Phone</th>
                     <th scope="col">Employment date</th>
                     <th scope="col">Position</th>
+					<th scope="col">Edit</th>
 					<th scope="col">Delete</th>
 				</tr>
 			</thead>
@@ -30,6 +31,7 @@
 					<td>{{i.phone}}</td>
                     <td>{{i.date_of_employment|date:"d.m.Y"}}</td>
                     <td>{{i.position}}</td>
+					<td><a href="{% url 'editSeller' i.id %}" class="nav-link text-center">&#9998;</a></td>
 					<td><a href="{% url 'deleteSeller' i.id %}" class="nav-link text-center">&#10008;</a></td>
 				</tr>
 				{% endfor %}
