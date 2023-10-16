@@ -29,7 +29,7 @@
 				<ul class="nav col-lg-auto col-12 mb-lg-0 mb-3 d-flex justify-content-center">
 					<li><a href="/" class="nav-link px-2">Home</a></li>
 					<li><a href="{% url 'viewDBCategories' %}" class="nav-link px-2">Database</a></li>
-					<li><a href="" class="nav-link px-2">Reports</a></li>
+					<li><a href="{% url 'viewDBReports' %}" class="nav-link px-2">Reports</a></li>
 				</ul>
 				<h6 class="text-center col-lg-auto col-12 mx-lg-auto mb-lg-0 mb-3" id="headerGreeting" style="color: rgb(92, 92, 92)">
 					Hello {{user.username}}!<br />
@@ -127,7 +127,7 @@
 			<!-- MAIN -->
 			{% if user.is_authenticated %}
 			<div id="content_main" class="border border-2 rounded rounded-2 mt-2 shadow-lg">
-				{% block viewDBCategories %}
+				{% block viewDBCategories %} {% block viewDBReports %}
 				<div class="d-flex align-items-center flex-column mt-5">
 					<div class="logoString_h3 mb-3">
 						<h3 class="text-center">Company sales</h3>
@@ -150,11 +150,11 @@
 				</div>
 				<div class="row my-3">
 					<div class="col-12 d-flex justify-content-center">
-						<a href="{% url 'viewDBCategories' %}" class="btn btn-outline-secondary mx-1" title="Company sales">Database</a>
-						<a href="" class="btn btn-outline-secondary mx-1" title="Company sales">Reports</a>
+						<a href="{% url 'viewDBCategories' %}" class="btn btn-outline-secondary mx-1" title="">Database</a>
+						<a href="{% url 'viewDBReports' %}" class="btn btn-outline-secondary mx-1" title="">Reports</a>
 					</div>
 				</div>
-				{% endblock %}
+				{% endblock %} {% endblock %}
 			</div>
 
 			{% else %}

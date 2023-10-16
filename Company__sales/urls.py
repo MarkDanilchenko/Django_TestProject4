@@ -25,8 +25,20 @@ urlpatterns_dbCategories = [
     # 
 ]
 
+urlpatterns_dbReports = [
+    path('DBReport_1', views.viewDBReport_1, name='viewDBReport_1'),
+    path('DBReport_2', views.viewDBReport_2, name='viewDBReport_2'),
+    path('DBReport_3', views.viewDBReport_3, name='viewDBReport_3'),
+    path('DBReport_4', views.viewDBReport_4, name='viewDBReport_4'),
+]
+
 urlpatterns = [
     path("", TemplateView.as_view(template_name="index.html")),
+    # 
     path("DBCategories/", views.viewDBCategories, name='viewDBCategories'),
     path("DBCategories/", include(urlpatterns_dbCategories)),
+    # 
+    path('DBReports/', views.viewDBReports, name='viewDBReports'),
+    path('DBReports/', include(urlpatterns_dbReports)),
+    # 
 ]

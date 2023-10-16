@@ -1,84 +1,69 @@
 .nav-link {
-    color: $custom_grey;
+	color: $custom_grey;
 }
 
 .nav-link:hover {
-    color: $custom_red;
+	color: $custom_red;
 }
 
 body {
-    border-radius: 15px;
-    margin: 20px;
-    box-shadow: 0 0 20px $custom_grey;
-    min-height: 95vh;
+	border-radius: 15px;
+	margin: 20px;
+	box-shadow: 0 0 20px $custom_grey;
+	min-height: 95vh;
 }
 
 #container_main {
-    min-height: 95vh;
+	min-height: 95vh;
 }
 
 // space block after #myHomework_labelRow
 #myHomework_labelRow + div {
-    position: relative;
-    top: 50px;
+	position: relative;
+	top: 50px;
 }
 
 footer {
-    position: sticky;
-    top: 95%;
+	position: sticky;
+	top: 95%;
 }
 
 @media screen and (min-width: 600px) {
-    .myHomework_labelBr {
-        display: none;
-    }
-    #myHomework_label {
-        font-family: $font-family-JetBrains;
-        height: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: unset;
-    }
+	.myHomework_labelBr {
+		display: none;
+	}
+	#myHomework_label {
+		font-family: $font-family-JetBrains;
+		height: 150px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: unset;
+	}
 }
 
 .logoString_h3,
 .logoString_h5,
 #headerGreeting {
-    font-family: $font-family-JetBrains;
+	font-family: $font-family-JetBrains;
 }
 
-
 #content_main {
-    width: 100%;
-    min-height: 75vh;
+	width: 100%;
+	min-height: 75vh;
 }
 
 #ul_get_started {
-    list-style-type: none;
-    li::marker {
-        content: '\27A7';
-    }
-    li {
-        padding-left: 15px;
-    }
-    line-height: 40px;
+	list-style-type: none;
+	li::marker {
+		content: '\27A7';
+	}
+	li {
+		padding-left: 15px;
+	}
+	line-height: 40px;
 }
 
-// del/ins remark at welcome page
-del {
-    text-decoration-color: $custom_red;
-}
-
-ins {
-    text-decoration: none;
-    font-family: 'Caveat', cursive;
-    font-size: 1.3em;
-    font-weight: 700;
-    color: $custom_red;
-    position: absolute;
-    transform: rotate(-25deg);
-    margin-left: -15px;
-    margin-top: -30px;
-    text-shadow: 2px 2px 5px $custom_darkgrey;
+#date_report2, #date_report4 {
+    max-width: 250px !important;
 }

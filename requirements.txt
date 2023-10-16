@@ -4,8 +4,12 @@ crispy-bootstrap5==0.7
 cryptography==41.0.4
 Django==4.2.6
 django-crispy-forms==2.0
+fuzzywuzzy==0.18.0
+Levenshtein==0.23.0
 pycparser==2.21
 PyMySQL==1.1.0
 python-dotenv==1.0.0
+python-Levenshtein==0.23.0
+rapidfuzz==3.4.0
 sqlparse==0.4.4
 typing_extensions==4.8.0

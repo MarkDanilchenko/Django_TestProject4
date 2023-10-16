@@ -1,6 +1,10 @@
 from django.contrib.auth import authenticate, login
+from django.db.models import Sum
 from django.shortcuts import render, redirect
 from . import forms, models
+from . import my_funtions__reports
+from fuzzywuzzy import process
+from fuzzywuzzy import fuzz
 
 
 # user registartion
@@ -22,6 +26,22 @@ def registration(request):
 # show all categories
 def viewDBCategories(request):
     return render(request, "DBCategories.html")
+
+
+# show all reports list
+def viewDBReports(request):
+    try:
+        total_result = models.Sale.objects.all()
+        if not total_result.exists():
+            raise Exception
+        else:
+            return render(request, "DBReport_/DBReports.html")
+    except:
+        empty_result = """Reports are <span style='color: rgb(223, 14, 14);'>not available</span> now.<br> 
+        Please, add any information to the \"Sales\" table in the database."""
+        return render(
+            request, "DBReport_/DBReports.html", {"empty_result": empty_result}
+        )
 
 
 # Customer functions
@@ -198,3 +218,99 @@ def editSale(request, id):
             form.save()
             return redirect("/DBCategories/DBsale")
     return render(request, "editSale.html", {"form": form})
+
+
+# Reports functions
+# Report 1
+def viewDBReport_1(request):
+    nameSurname__seller_userInput = request.GET.get("nameSurname__seller_report1")
+    nameSurname__seller_DBlist = my_funtions__reports.report1__nameSurname__seller()
+    if len(nameSurname__seller_userInput) > 0:
+        result = process.extractOne(
+            str(nameSurname__seller_userInput), nameSurname__seller_DBlist
+        )
+    if result[1] <= 60:
+        return render(
+            request,
+            "DBreport_/report_1.html",
+            {
+                "result_notFound": "<span style='color: rgb(223, 14, 14);'>No</span> such seller. Clarify your request and try again."
+            },
+        )
+    else:
+        name = result[0].split(" ")[0]
+        surname = result[0].split(" ")[1]
+        result = models.Sale.objects.filter(seller__name=name, seller__surname=surname)
+        return render(
+            request,
+            "DBreport_/report_1.html",
+            {"result": result, "search_name": name, "search_surname": surname},
+        )
+
+
+# Report 2
+def viewDBReport_2(request):
+    try:
+        date_userInput = request.GET.get("date_report2")
+        result = models.Sale.objects.filter(date_of_sale=date_userInput)
+        if not result.exists():
+            raise Exception
+        else:
+            return render(request, "DBreport_/report_2.html", {"result": result})
+    except:
+        result_notFound = "<span style='color: rgb(223, 14, 14);'>No</span> any sales on this date. Clarify your request and try again."
+        return render(
+            request, "DBreport_/report_2.html", {"result_notFound": result_notFound}
+        )
+
+
+# Report 3
+def viewDBReport_3(request):
+    itemName_userInput = request.GET.get("item_report3")
+    itemName_DBlist = my_funtions__reports.report3__itemName()
+    if len(itemName_userInput) > 0:
+        result = process.extractOne(str(itemName_userInput), itemName_DBlist)
+    if result[1] <= 60:
+        return render(
+            request,
+            "DBreport_/report_3.html",
+            {
+                "result_notFound": "<span style='color: rgb(223, 14, 14);'>No</span> of these items were sold. Clarify your request and try again."
+            },
+        )
+    else:
+        searchedItem = models.Item.objects.get(name=result[0])
+        result = searchedItem.sale_set.all()
+        return render(request, "DBreport_/report_3.html", {"result": result})
+
+
+#  Report 4
+def viewDBReport_4(request):
+    try:
+        date_userInput = request.GET.get("date_report4")
+        result = models.Sale.objects.filter(date_of_sale=date_userInput)
+        if not result.exists():
+            raise Exception
+        else:
+            result_sum = models.Sale.objects.filter(
+                date_of_sale=date_userInput
+            ).aggregate(Sum("item__price"))["item__price__sum"]
+
+            result_count = models.Sale.objects.filter(
+                date_of_sale=date_userInput
+            ).count()
+
+            return render(
+                request,
+                "DBreport_/report_4.html",
+                {
+                    "date_userInput": date_userInput,
+                    "result_count": result_count,
+                    "result_sum": result_sum,
+                },
+            )
+    except:
+        result_notFound = "<span style='color: rgb(223, 14, 14);'>No</span> any sales on this date. Clarify your request and try again."
+        return render(
+            request, "DBreport_/report_4.html", {"result_notFound": result_notFound}
+        )

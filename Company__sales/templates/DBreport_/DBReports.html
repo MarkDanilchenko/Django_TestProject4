@@ -1,0 +1,188 @@
+{% extends 'index.html' %} {% block viewDBReports %} {% autoescape off %}
+
+<div class="d-flex align-items-center flex-column my-5">
+	<div class="logoString_h3 mb-3">
+		<h3 class="text-center">Company sales</h3>
+		<h4 class="text-center">Reports</h4>
+	</div>
+	<p class="text-center">Create a different database reports from below</p>
+	<span>&#9660;</span>
+</div>
+{% if empty_result %}
+<p class="text-center">{{empty_result}}</p>
+{% else %}
+
+<div class="row">
+	<div class="col-10 offset-1">
+		<div class="d-flex justify-content-end"><a href="{% url 'viewDBReports' %}" class="nav-link">&#10008; Clear all</a></div>
+		<div class="accordion" id="accordionExample">
+			<!-- report 1 ||| Displaying all customers of a given seller -->
+			<!-- report 1 ||| Displaying all customers of a given seller -->
+			<!-- report 1 ||| Displaying all customers of a given seller -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseOne"
+						aria-expanded="false"
+						aria-controls="collapseOne"
+					>
+						<span>&#128203;<b>Report №1:</b> Displaying all customers of a given seller</span>
+					</button>
+				</h2>
+				<div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_1' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Seller's name or surname <br />to create a report.</i>
+								</p>
+								<div class="form-floating">
+									<input
+										type="text"
+										class="form-control"
+										id="floatingInput__report1"
+										name="nameSurname__seller_report1"
+										placeholder="Seller name or surname"
+									/>
+									<label for="floatingInput__report1">Search...</label>
+								</div>
+								<button type="submit" class="btn btn-outline-secondary ms-3">OK</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_1 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 2 ||| Displaying all sales on a given date -->
+			<!-- report 2 ||| Displaying all sales on a given date -->
+			<!-- report 2 ||| Displaying all sales on a given date -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseTwo"
+						aria-expanded="false"
+						aria-controls="collapseTwo"
+					>
+						<span>&#128203;<b>Report №2:</b> Displaying all sales on a given date</span>
+					</button>
+				</h2>
+				<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_2' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Choose date to create a report</i>
+								</p>
+								<input type="date" name="date_report2" class="form-control" id="date_report2" />
+								<button type="submit" class="btn btn-outline-secondary ms-3">OK</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_2 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 3 ||| Displaying all sellers who sold item -->
+			<!-- report 3 ||| Displaying all sellers who sold item -->
+			<!-- report 3 ||| Displaying all sellers who sold item -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseThree"
+						aria-expanded="false"
+						aria-controls="collapseThree"
+					>
+						<span>&#128203;<b>Report №3:</b> Displaying all sellers who sold item</span>
+					</button>
+				</h2>
+				<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_3' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Choose an item:</i>
+								</p>
+								<div class="form-floating">
+									<input
+										type="text"
+										class="form-control"
+										id="floatingInput__report3"
+										name="item_report3"
+										placeholder="Choose an item"
+									/>
+									<label for="floatingInput__report3">Search...</label>
+								</div>
+								<button type="submit" class="btn btn-outline-secondary ms-3">OK</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_3 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 4 ||| Displaying all sellers who sold item -->
+			<!-- report 4 ||| Displaying all sellers who sold item -->
+			<!-- report 4 ||| Displaying all sellers who sold item -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseFour"
+						aria-expanded="false"
+						aria-controls="collapseFour"
+					>
+						<span>&#128203;<b>Report №4:</b> Displaying total sales amount per day</span>
+					</button>
+				</h2>
+				<div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_4' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Choose date to create a report</i>
+								</p>
+								<input type="date" name="date_report4" class="form-control" id="date_report4" />
+								<button type="submit" class="btn btn-outline-secondary ms-3">OK</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_4 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %} {% endautoescape %} {% endblock %}

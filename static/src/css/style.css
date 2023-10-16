@@ -500,21 +500,8 @@ footer {
   padding-left: 15px;
 }
 
-del {
-  text-decoration-color: rgb(223, 14, 14);
-}
-
-ins {
-  text-decoration: none;
-  font-family: "Caveat", cursive;
-  font-size: 1.3em;
-  font-weight: 700;
-  color: rgb(223, 14, 14);
-  position: absolute;
-  transform: rotate(-25deg);
-  margin-left: -15px;
-  margin-top: -30px;
-  text-shadow: 2px 2px 5px rgb(92, 92, 92);
+#date_report2, #date_report4 {
+  max-width: 250px !important;
 }
 
 /*# sourceMappingURL=style.css.map */
