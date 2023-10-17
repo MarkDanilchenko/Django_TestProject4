@@ -30,6 +30,12 @@ urlpatterns_dbReports = [
     path('DBReport_2', views.viewDBReport_2, name='viewDBReport_2'),
     path('DBReport_3', views.viewDBReport_3, name='viewDBReport_3'),
     path('DBReport_4', views.viewDBReport_4, name='viewDBReport_4'),
+    path('DBReport_5', views.viewDBReport_5, name='viewDBReport_5'),
+    path('DBReport_6', views.viewDBReport_6, name='viewDBReport_6'),
+    path('DBReport_7', views.viewDBReport_7, name='viewDBReport_7'),
+    path('DBReport_8', views.viewDBReport_8, name='viewDBReport_8'),
+    path('DBReport_9', views.viewDBReport_9, name='viewDBReport_9'),
+    path('DBReport_10', views.viewDBReport_10, name='viewDBReport_10'),
 ]
 
 urlpatterns = [

@@ -500,8 +500,8 @@ footer {
   padding-left: 15px;
 }
 
-#date_report2, #date_report4 {
-  max-width: 250px !important;
+#date_report2, #date_report4, #dateStart_report8, #dateEnd_report8, #dateStart_report9, #dateEnd_report9, #dateStart_report10, #dateEnd_report10 {
+  max-width: 150px !important;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.shortcuts import render, redirect
 from . import forms, models
 from . import my_funtions__reports
@@ -313,4 +313,177 @@ def viewDBReport_4(request):
         result_notFound = "<span style='color: rgb(223, 14, 14);'>No</span> any sales on this date. Clarify your request and try again."
         return render(
             request, "DBreport_/report_4.html", {"result_notFound": result_notFound}
+        )
+
+
+# Report 5
+def viewDBReport_5(request):
+    top_item = (
+        models.Sale.objects.values("item__name")
+        .annotate(total_amount=Count("item__id"))
+        .order_by("-total_amount")
+        .first()
+    )
+    top_item__name = top_item["item__name"]
+    top_item__amount = top_item["total_amount"]
+    return render(
+        request,
+        "DBreport_/report_5.html",
+        {"top_item__name": top_item__name, "top_item__amount": top_item__amount},
+    )
+
+
+# Report 6
+def viewDBReport_6(request):
+    top_seller = (
+        models.Sale.objects.values("seller__name", "seller__surname")
+        .annotate(total_sum=Sum("item__price"))
+        .order_by("-total_sum")
+        .first()
+    )
+    top_seller__name = top_seller["seller__name"]
+    top_seller__surname = top_seller["seller__surname"]
+    top_seller__sum = top_seller["total_sum"]
+
+    return render(
+        request,
+        "DBreport_/report_6.html",
+        {
+            "top_seller__name": top_seller__name,
+            "top_seller__surname": top_seller__surname,
+            "top_seller__sum": top_seller__sum,
+        },
+    )
+
+
+# Report 7
+def viewDBReport_7(request):
+    top_customer = (
+        models.Sale.objects.values("customer__name", "customer__surname")
+        .annotate(total_sum=Sum("item__price"))
+        .order_by("-total_sum")
+        .first()
+    )
+
+    top_customer__name = top_customer["customer__name"]
+    top_customer__surname = top_customer["customer__surname"]
+    top_customer__sum = top_customer["total_sum"]
+
+    return render(
+        request,
+        "DBreport_/report_7.html",
+        {
+            "top_customer__name": top_customer__name,
+            "top_customer__surname": top_customer__surname,
+            "top_customer__sum": top_customer__sum,
+        },
+    )
+
+
+# Report 8
+def viewDBReport_8(request):
+    dateStart_userInput = request.GET.get("dateStart_report8")
+    dateEnd_userInput = request.GET.get("dateEnd_report8")
+    try:
+        result = (
+            models.Sale.objects.filter(
+                date_of_sale__range=[dateStart_userInput, dateEnd_userInput]
+            )
+            .values("item__name")
+            .annotate(total_count=Count("item__id"))
+            .order_by("-total_count", "item__name")
+            .first()
+        )
+
+        if not result:
+            raise Exception
+        else:
+            return render(
+                request,
+                "DBreport_/report_8.html",
+                {
+                    "dateStart_userInput": dateStart_userInput,
+                    "dateEnd_userInput": dateEnd_userInput,
+                    "item_name": result["item__name"],
+                    "item_total_count": result["total_count"],
+                },
+            )
+    except:
+        result_notFound = "<span style='color: rgb(223, 14, 14);'>No</span> any sales on this date. Clarify your request and try again."
+        return render(
+            request, "DBreport_/report_8.html", {"result_notFound": result_notFound}
+        )
+
+
+# Report 9
+def viewDBReport_9(request):
+    dateStart_userInput = request.GET.get("dateStart_report9")
+    dateEnd_userInput = request.GET.get("dateEnd_report9")
+    try:
+        result = (
+            models.Sale.objects.filter(
+                date_of_sale__range=[dateStart_userInput, dateEnd_userInput]
+            )
+            .values("seller__name", "seller__surname")
+            .annotate(total_sum=Sum("item__price"))
+            .order_by("-total_sum")
+            .first()
+        )
+
+        if not result:
+            raise Exception
+        else:
+            return render(
+                request,
+                "DBreport_/report_9.html",
+                {
+                    "dateStart_userInput": dateStart_userInput,
+                    "dateEnd_userInput": dateEnd_userInput,
+                    "seller_name": result["seller__name"],
+                    "seller_surname": result["seller__surname"],
+                    "seller_total_sum": result["total_sum"],
+                },
+            )
+    except:
+        result_notFound = "<span style='color: rgb(223, 14, 14);'>No</span> any sales on this date. Clarify your request and try again."
+        return render(
+            request, "DBreport_/report_9.html", {"result_notFound": result_notFound}
+        )
+
+
+# Report 10
+def viewDBReport_10(request):
+    dateStart_userInput = request.GET.get("dateStart_report10")
+    dateEnd_userInput = request.GET.get("dateEnd_report10")
+    try:
+        result = (
+            models.Sale.objects.filter(
+                date_of_sale__range=[dateStart_userInput, dateEnd_userInput]
+            )
+            .values("customer__name", "customer__surname")
+            .annotate(total_sum=Sum("item__price"))
+            .order_by("-total_sum")
+            .first()
+        )
+
+        if not result:
+            raise Exception
+        else:
+            return render(
+                request,
+                "DBreport_/report_10.html",
+                {
+                    "dateStart_userInput": dateStart_userInput,
+                    "dateEnd_userInput": dateEnd_userInput,
+                    "customer_name": result["customer__name"],
+                    "customer_surname": result["customer__surname"],
+                    "customer_total_sum": result["total_sum"],
+                },
+            )
+    except:
+        result_notFound = "<span style='color: rgb(223, 14, 14);'>No</span> any sales on this date. Clarify your request and try again."
+        return render(
+            request,
+            "DBreport_/report_10.html",
+            {"result_notFound": result_notFound},
         )

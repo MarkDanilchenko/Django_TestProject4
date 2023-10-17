@@ -12,9 +12,9 @@
 <p class="text-center">{{empty_result}}</p>
 {% else %}
 
-<div class="row">
+<div class="row mb-5">
 	<div class="col-10 offset-1">
-		<div class="d-flex justify-content-end"><a href="{% url 'viewDBReports' %}" class="nav-link">&#10008; Clear all</a></div>
+		<div class="d-flex justify-content-end"><a href="{% url 'viewDBReports' %}" class="nav-link">&#10008; Clear all reports tables</a></div>
 		<div class="accordion" id="accordionExample">
 			<!-- report 1 ||| Displaying all customers of a given seller -->
 			<!-- report 1 ||| Displaying all customers of a given seller -->
@@ -145,9 +145,9 @@
 					</div>
 				</div>
 			</div>
-			<!-- report 4 ||| Displaying all sellers who sold item -->
-			<!-- report 4 ||| Displaying all sellers who sold item -->
-			<!-- report 4 ||| Displaying all sellers who sold item -->
+			<!-- report 4 ||| Displaying total sales amount per day -->
+			<!-- report 4 ||| Displaying total sales amount per day -->
+			<!-- report 4 ||| Displaying total sales amount per day -->
 			<div class="accordion-item">
 				<h2 class="accordion-header">
 					<button
@@ -179,6 +179,228 @@
 							</form>
 						</div>
 						<div class="row">{% block DBReport_4 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 5 ||| Displaying top sold item -->
+			<!-- report 5 ||| Displaying top sold item -->
+			<!-- report 5 ||| Displaying top sold item -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseFive"
+						aria-expanded="false"
+						aria-controls="collapseFive"
+					>
+						<span>&#128203;<b>Report №5:</b> Displaying top sold item</span>
+					</button>
+				</h2>
+				<div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_5' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Click to display information about the most sold item</i>
+								</p>
+								<button type="submit" class="btn btn-outline-secondary ms-3">Top item!</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_5 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 6 ||| Displaying top sales seller -->
+			<!-- report 6 ||| Displaying top sales seller -->
+			<!-- report 6 ||| Displaying top sales seller -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseSix"
+						aria-expanded="false"
+						aria-controls="collapseSix"
+					>
+						<span>&#128203;<b>Report №6:</b> Displaying top sales seller</span>
+					</button>
+				</h2>
+				<div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_6' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Click to display information about the top sales seller</i>
+								</p>
+								<button type="submit" class="btn btn-outline-secondary ms-3">Top seller!</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_6 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 7 ||| Displaying top sales customer -->
+			<!-- report 7 ||| Displaying top sales customer -->
+			<!-- report 7 ||| Displaying top sales customer -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseSeven"
+						aria-expanded="false"
+						aria-controls="collapseSeven"
+					>
+						<span>&#128203;<b>Report №7:</b> Displaying top sales customer</span>
+					</button>
+				</h2>
+				<div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_7' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Click to display information about the top sales customer</i>
+								</p>
+								<button type="submit" class="btn btn-outline-secondary ms-3">Top customer!</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_7 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 8 ||| Displaying most sold item in the period -->
+			<!-- report 8 ||| Displaying most sold item in the period -->
+			<!-- report 8 ||| Displaying most sold item in the period -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseEight"
+						aria-expanded="false"
+						aria-controls="collapseEight"
+					>
+						<span>&#128203;<b>Report №8:</b> Displaying most sold item in the period</span>
+					</button>
+				</h2>
+				<div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_8' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Set period to display information about the most sold item</i>
+								</p>
+								<input type="date" name="dateStart_report8" class="form-control" id="dateStart_report8" />
+								<input type="date" name="dateEnd_report8" class="form-control" id="dateEnd_report8" />
+								<button type="submit" class="btn btn-outline-secondary ms-3">Top item!</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_8 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 9 ||| Displaying top sales seller in the period -->
+			<!-- report 9 ||| Displaying top sales seller in the period -->
+			<!-- report 9 ||| Displaying top sales seller in the period -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseNine"
+						aria-expanded="false"
+						aria-controls="collapseNine"
+					>
+						<span>&#128203;<b>Report №9:</b> Displaying top sales seller in the period</span>
+					</button>
+				</h2>
+				<div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_9' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Set period to display information about top sales seller in the period</i>
+								</p>
+								<input type="date" name="dateStart_report9" class="form-control" id="dateStart_report9" />
+								<input type="date" name="dateEnd_report9" class="form-control" id="dateEnd_report9" />
+								<button type="submit" class="btn btn-outline-secondary ms-3">Top seller!</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_9 %} {% endblock %}</div>
+					</div>
+				</div>
+			</div>
+			<!-- report 10 ||| Displaying top sales customer in the period -->
+			<!-- report 10 ||| Displaying top sales customer in the period -->
+			<!-- report 10 ||| Displaying top sales customer in the period -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button
+						class="accordion-button collapsed"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseTen"
+						aria-expanded="false"
+						aria-controls="collapseTen"
+					>
+						<span>&#128203;<b>Report №10:</b> Displaying top sales customer in the period</span>
+					</button>
+				</h2>
+				<div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<div class="row">
+							<form
+								action="{% url 'viewDBReport_10' %}"
+								method="get"
+								enctype="multipart/form-data"
+								class="d-flex justify-content-center align-items-center"
+							>
+								{% csrf_token %}
+								<p class="text-center me-5 text-small my-0">
+									<i>Set period to display information about top sales customer in the period</i>
+								</p>
+								<input type="date" name="dateStart_report10" class="form-control" id="dateStart_report10" />
+								<input type="date" name="dateEnd_report10" class="form-control" id="dateEnd_report10" />
+								<button type="submit" class="btn btn-outline-secondary ms-3">Top customer!</button>
+							</form>
+						</div>
+						<div class="row">{% block DBReport_10 %} {% endblock %}</div>
 					</div>
 				</div>
 			</div>
