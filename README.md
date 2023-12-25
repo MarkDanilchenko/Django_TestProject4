@@ -17,6 +17,8 @@ This is a Django test project using MYSQL and Docker.
 7. To stop the server: ```Ctrl+C```
 8. To completely remove all created docker containers, images and volumes: ```docke-compose down --volumes```.
 
+*p.s. points № 2 and 3 are not necessary* 
+
 ### Screenshots 
 
 1. Main page
