@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+    </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon_io/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon_io/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_io/favicon-16x16.png' %}" />
+    <link rel="manifest" href="{% static 'favicon_io/site.webmanifest' %}" />
+    <meta name="keywords" content="company, sales, python3, javascript, html, scss, git, django, bootstrap, docker" />
+    <meta name="description"
+        content="This is a simple MPA project, based on Django4. The app provides some different reports (query) from PostgresQL, made with the Django ORM." />
+    <title>Company&sales</title>
+</head>
+
+<body class="bg-body-tertiary">
+    <div class="container" id="container_main">
+        <main class="form-signin mx-auto">
+            {% load crispy_forms_tags %}
+
+            <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <fieldset class="form-group">
+                    <a href="/" class="d-flex align-items-center justify-content-center mb-3">
+                        <img src="{% static 'favicon_io/favicon-32x32.png' %}" alt="Home page logo" />
+                    </a>
+                    <legend class="border-bottom mb-4 text-center">
+                        <b>Sign up!</b>
+                    </legend>
+
+                    {{ form|crispy }}
+
+                </fieldset>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-outline-secondary" type="submit"><b>SignUp!</b></button>
+                </div>
+            </form>
+            <p class="text-center text-secondary mt-3" style="font-size: smaller">
+                <i>After a successful registration<br />
+                    redirected to home page.</i>
+            </p>
+            <small class="text-muted"> Already registered? <a class="ml-2 nav-link" href="{% url 'login' %}"
+                    title="SignIn!">SignIn!</a> </small>
+        </main>
+        <footer class="col-12">
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a href="/" class="nav-link px-2">Home</a></li>
+            </ul>
+            <hr class="my-1" />
+            <p class="text-center text-body-secondary pb-4">2023 MyHomeworks, &#123; &#125;</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'dist/bundle.js' %}"></script>
+</body>
+
+</html>

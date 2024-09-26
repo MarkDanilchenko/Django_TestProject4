@@ -1,26 +1,29 @@
-const path = require("path");
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, "./src/js/main.js"),
+    index: path.resolve(__dirname, 'src/js/index.js')
   },
-  mode: "production",
   output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
+  mode: 'development',
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: ["style-loader", "css-loader"],
-      },
-    ],
+      { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' }
+    ]
   },
+  plugins: [
+    new Dotenv({
+      path: '../.env.development'
+    }),
+    new ESLintPlugin({ configType: 'flat', extensions: ['js'] })
+  ]
 };

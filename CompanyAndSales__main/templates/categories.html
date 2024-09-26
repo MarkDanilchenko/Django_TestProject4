@@ -1,0 +1,23 @@
+{% extends 'index.html' %} {% block categories %}
+
+<div class="d-flex align-items-center flex-column my-5">
+    <div class="logoString_h3 mb-3">
+        <h3 class="text-center">Company&sales</h3>
+    </div>
+    <div class="row">
+        <div class="col"><a href="{% url 'getSales' %}" class="nav-link">Sales</a></div>
+        <div class="col"><a href="{% url 'getItems' %}" class="nav-link">Items</a></div>
+        <div class="col"><a href="{% url 'getCustomers' %}" class="nav-link">Customers</a></div>
+        <div class="col"><a href="{% url 'getSellers' %}" class="nav-link">Sellers</a></div>
+        <hr class="mt-3">
+    </div>
+</div>
+{% block content %}
+
+<div class="d-flex flex-column justify-content-center align-items-center" style="height: 100px;">
+    <span>&#9650;</span>
+    <h3 class="logoString_h3 text-center">Choose category above</h3>
+</div>
+{% endblock %}
+
+{% endblock %}

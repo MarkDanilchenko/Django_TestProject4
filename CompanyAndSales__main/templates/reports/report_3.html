@@ -1,0 +1,45 @@
+{% extends 'reports/reports.html' %} {% block report_3 %}
+{% autoescape off %}
+{% if notFound %}
+
+<div class="col-10 offset-1 text-center">
+	<i>{{ notFound }}</i>
+</div>
+{% else %}
+
+<div class="col-12 offset-0 text-center">
+	<table class="table table-striped table-bordered table-sm text-center caption-top">
+		<caption class="text-center text-small">
+			<div class="d-flex justify-content-between align-items-center">
+				<span>&#128203;<b>Report №3:</b><br />
+					All sellers who sold item</span>
+				<span class="text-end text-small">Search sellers by item: <b>{{ itemName_report_3 }}</b></span>
+			</div>
+		</caption>
+		<thead>
+			<tr class="align-middle">
+				<th scope="col">#</th>
+				<th scope="col">Sale date</th>
+				<th scope="col">Item</th>
+				<th scope="col">Price</th>
+				<th scope="col">Seller Info</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			{% for sale in relatedSales %}
+
+			<tr class="align-middle">
+				<th scope="row">{{ forloop.counter }}</th>
+				<td>{{ sale.dateOfSale|date:"d.m.Y" }}</td>
+				<td>{{ sale.item.name }}</td>
+				<td>{{ sale.item.price }}</td>
+				<td>{{ sale.seller.firstName }} {{ sale.seller.lastName }} - {{ sale.seller.position }}</td>
+			</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+</div>
+{% endif %}
+{% endautoescape %}
+{% endblock %}

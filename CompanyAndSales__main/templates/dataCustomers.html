@@ -1,0 +1,57 @@
+{% extends 'categories.html' %} {% block content %}
+{% autoescape off %}
+{% if customers %}
+
+<div class="row">
+	<div class="offset-1 col-10 table-responsive">
+		<table class="table table-striped table-bordered table-sm text-center caption-top">
+			<caption class="text-center">
+				<div class="d-flex justify-content-between">
+					<span>Customers data</span>
+					<span><a href="{% url 'addCustomer' %}" class="nav-link text-center">&#43; Add customer</a></span>
+				</div>
+			</caption>
+			<thead>
+				<tr class="align-middle">
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Surname</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for customer in customers %}
+
+				<tr class="align-middle">
+					<th scope="row">{{forloop.counter}}</th>
+					<td>{{customer.firstName}}</td>
+					<td>{{customer.lastName}}</td>
+					<td>{{customer.email}}</td>
+					<td>{{customer.phone}}</td>
+					<td><a href="{% url 'editCustomer' customer.id %}" class="nav-link text-center">&#9998;</a></td>
+					<td><a href="{% url 'deleteCustomer' customer.id %}" class="nav-link text-center">&#10008;</a></td>
+				</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="offset-2 col-8">
+		<a href="{% url 'addCustomer' %}" class="nav-link text-center">Add customer</a>
+	</div>
+</div>
+{% elif notFound %}
+
+<div class="d-flex flex-column align-items-center">
+	<h5 class="text-center logoString_h5">{{notFound}}</h5>
+	<span>&#9660;</span>
+	<a href="{% url 'addCustomer' %}" class="nav-link text-center">Add customer</a>
+</div>
+{% endif %}
+{% endautoescape %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'reports/reports.html' %} {% block report_2 %}
+{% autoescape off %}
+{% if notFound %}
+
+<div class="col-10 offset-1 text-center mt-3">
+	<i>{{ notFound }}</i>
+</div>
+{% else %}
+
+<div class="col-12 offset-0 text-center">
+	<table class="table table-striped table-bordered table-sm text-center caption-top">
+		<caption class="text-center">
+			<div class="text-start text-small">
+				<span>&#128203;<b>Report №2:</b><br />
+					All sales by a given date</span>
+			</div>
+		</caption>
+		<thead>
+			<tr class="align-middle">
+				<th scope="col">#</th>
+				<th scope="col">Date</th>
+				<th scope="col">Item</th>
+				<th scope="col">Price</th>
+				<th scope="col">Customer info</th>
+				<th scope="col">Seller info</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			{% for sale in sales %}
+
+			<tr class="align-middle">
+				<th scope="row">{{ forloop.counter }}</th>
+				<td>{{ sale.dateOfSale|date:"d.m.Y" }}</td>
+				<td>{{ sale.item.name }}</td>
+				<td>{{ sale.item.price }}</td>
+				<td>{{ sale.customer.firstName }} {{ sale.customer.lastName }} <br />{{ sale.customer.email }}</td>
+				<td>{{ sale.seller.firstName }} {{ sale.seller.lastName }} <br>{{ sale.seller.position }}</td>
+			</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+</div>
+{% endif %}
+{% endautoescape %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'categories.html' %} {% block content %}
+{% autoescape off %}
+
+<div class="d-flex justify-content-center">
+    {% load crispy_forms_tags %}
+
+    <form action="" method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-center mb-5">
+        {% csrf_token %}
+
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 text-center"><b>Edit Item</b></legend>
+
+            {{ form|crispy }}
+
+        </fieldset>
+        <div class="d-flex justify-content-center align-items-center">
+            <a href="{% url 'getItems' %}" class="nav-link">Back</a>
+            <button type="submit" class="btn btn-outline-secondary ms-3">Edit</button>
+        </div>
+    </form>
+</div>
+{% endautoescape %}
+{% endblock %}

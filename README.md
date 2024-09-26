@@ -1,40 +1,139 @@
-## Description
-This is a Django test project using MYSQL and Docker.
+## App Description &#128209;
 
+This is a simple MPA project, based on Django4. The app provides some different reports (query) from PostgresQL, made with the Django ORM.
 
 ## Launch instructions
 
+&#9881;**Frontend**:
 
-1. Clone repository to your local folder;
-2. Install all packages from requirements.txt: ```pip install -r requirements.txt```;
-3. Insatll all packages from package.json: ```cd ./static && npm install```;
-4. Copy dev.env to .env file: ```cp dev.env .env```
-5. Follow the instructions in new created .env file;
-6. For this step you should already have installed Docker and docker-compose on your PC:
-- Run docker-compose: ```docker-compose up --build```
-- Installation can take some time, it depends on your PC resources;
-- After the installation is completed, the server will start automatically on 0.0.0.0:8800;
-7. To stop the server: ```Ctrl+C```
-8. To completely remove all created docker containers, images and volumes: ```docke-compose down --volumes```.
+- Bootstrap5;
+- HTML/SCSS;
+- Webpack + prettier + eslint.
+  
+&#9881;**Backend**:
 
-*p.s. points № 2 and 3 are not necessary* 
+- Django 4;
+- Docker;
+- PostgresQL.
 
-### Screenshots 
+<div style="display: flex; justify-content: end;">
+  <p>Git and Docker should be installed locally on Your PC.</p>
+</div>
 
-1. Main page
-![Main page](screenshots/ScreenShot_1.png)
+---
 
-2. Registration form
-![Registration form](screenshots/ScreenShot_2.png)
+1. Clone repository to Your local path:
 
-3. Login form
-![Login form](screenshots/ScreenShot_3.png)
+    ```sh
+    cd <your_local_path> && git clone <http/ssh-link>
+    ```
 
-4. Data
-![Data](screenshots/ScreenShot_4.png)
+2. Run compose:
 
-5. Add data form
-![Add data form](screenshots/ScreenShot_5.png)
+    ```sh
+    cd CompanyAndSales && docker compose --env-file ./.env.public up --build
+    ```
 
-6. Reports list
-![Reports list](screenshots/ScreenShot_6.png)
+3. After the installation is complete the web-app will start on `0.0.0.0:8001`;
+
+- Open web-app in browser using URL: <http://0.0.0.0:8001/>
+
+4. The superuser(admin) is NOT created automatically. To create it by yourself follow the instructions below in the new terminal (related docker containers must be in use):
+
+    4.1 Create superuser:
+
+    ```sh
+    docker exec -it server python manage.py createsuperuser --noinput --username admin --email admin@example.com
+    ```
+
+    4.2 Note, that default password is already preset in the script above. Default credentials are:
+
+    ```js
+        {
+          username: admin;
+          email: admin@example.com;
+          password: admin;
+        }
+    ```
+
+    - for another password preset it should be **changed FIRST** in ./.env.public `DJANGO_SUPERUSER_PASSWORD=` and then run point 4.1.
+
+    4.3 For changing already existing superuser's password (not password preset):
+
+    ```sh
+    docker exec -it server python manage.py changepassword admin
+    ```
+
+    - you will be prompted to set another password.
+
+5. Stop the web-app press in current terminal:
+
+    ```sh
+    Ctrl + C
+    ```
+
+    or
+
+    ```sh
+    docker compose --env-file ./.env.public stop
+    ```
+
+6. Start again the web-app:
+
+    ```sh
+    docker compose --env-file ./.env.public start
+    ```
+
+7. To completely remove all related docker containers, docker images, volumes and related data:
+
+    ```sh
+    docker compose --env-file ./.env.public down --volumes --rmi all
+    ```
+
+    <span style="color: rgb(255, 0, 0)">After this step, it is need to go back to point №2 to run web-app again.</span>
+
+---
+
+### p.s
+
+- Local environment variables can be changed in the `./.env.public`<br/>
+- Outer ports of both django-server & postgresql are `8001` & `5433` respectively and could not be changed via environment.
+
+## Screenshots &#127745;
+
+1. Main page (not authenticated users)
+
+<div align="center">
+  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+</div>
+
+2. Main page (authenticated users)
+
+<div align="center">
+  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+</div>
+
+3. SignUp & signIn forms:
+
+<div align="center">
+  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+</div>
+
+4. Add data:
+
+<div align="center">
+  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+</div>
+
+5. Representation of data & reports:
+
+<div align="center">
+  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+</div>
+
+<br>
+
+---

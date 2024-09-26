@@ -1,39 +1,43 @@
-version: '3.1'
-
 services:
-    server:
-        build: .
-        container_name: server
-        command: sh -c "python manage.py migrate && python manage.py makemigrations && python manage.py runserver 0.0.0.0:8800"
-        volumes:
-            - ./:/app
-        ports:
-            - 8800:8800
-        environment:
-            - DATABASE_HOST=db
-        links:
-            - db
-        depends_on:
-            db:
-                condition: service_healthy
-
-    db:
-        image: mysql:8
-        restart: always
-        container_name: db
-        ports:
-            - 3307:3306
-        env_file:
-            - .env
-        volumes:
-            - ./db_data:/var/lib/mysql
-            # - ./Company__sales.sql:/docker-entrypoint-initdb.d/Company__sales.sql
-        healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-            interval: 10s
-            timeout: 3s
-            retries: 2
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "server"
+    restart: always
+    env_file:
+      - .env.public
+    environment:
+      - DATABASE_HOST=database
+    command: >
+      sh -c 'python manage.py makemigrations
+      && python manage.py migrate
+      && python manage.py runserver ${DJANGO_SERVER_HOST}:${DJANGO_SERVER_PORT}'
+    ports:
+      - 8001:${DJANGO_SERVER_PORT}
+    depends_on:
+      database:
+        condition: service_healthy
+  database:
+    image: postgres:16.4
+    container_name: "database"
+    restart: always
+    env_file:
+      - .env.public
+    ports:
+      - 5433:${DATABASE_PORT}
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -c 'SELECT 1' || exit 1",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 volumes:
-    db_data:
-        name: db_data
+  db_data:
+    driver: local
