@@ -22,8 +22,8 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      path: '../.env.development'
+      path: '../.env.public'
     }),
-    new ESLintPlugin({ configType: 'flat', extensions: ['js'] })
+    new ESLintPlugin({ configType: 'flat', extensions: ['js', 'mjs'] })
   ]
 };

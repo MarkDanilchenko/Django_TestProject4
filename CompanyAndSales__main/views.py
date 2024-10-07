@@ -190,7 +190,7 @@ def getSales(request):
         return render(request, "dataSales.html", {"sales": sales})
     except Exception:
         notFound = """
-        Sales <span style='color: rgb(223, 14, 14);'>not found.</span><br><br> Please add any sale information first.
+        Sales <span style='color: rgb(223, 14, 14);'>not found.</span><br> Please add any sale information first.
         """
 
         return render(request, "dataSales.html", {"notFound": notFound})

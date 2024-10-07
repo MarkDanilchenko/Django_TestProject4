@@ -2,7 +2,7 @@
 
 This is a simple MPA project, based on Django4. The app provides some different reports (query) from PostgresQL, made with the Django ORM.
 
-## Launch instructions
+## Launch instructions &#128190;
 
 &#9881;**Frontend**:
 
@@ -104,34 +104,38 @@ This is a simple MPA project, based on Django4. The app provides some different 
 1. Main page (not authenticated users)
 
 <div align="center">
-  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+  <img src="./screenshots/ScreenShot_1.png" width="75%" heigth="75%" alt="Main page">
 </div>
 
-2. Main page (authenticated users)
+2. SignUp & signIn forms:
 
 <div align="center">
-  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+  <img src="./screenshots/ScreenShot_2.png" width="75%" heigth="75%" alt="SignUp form">
+  <img src="./screenshots/ScreenShot_3.png" width="75%" heigth="75%" alt="SignIn form">
 </div>
 
-3. SignUp & signIn forms:
+3. Description page
 
 <div align="center">
-  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
-  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+  <img src="./screenshots/ScreenShot_4.png" width="75%" heigth="75%" alt="Description">
 </div>
 
-4. Add data:
+4. Data presentation:
 
 <div align="center">
-  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
-  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+  <img src="./screenshots/ScreenShot_5.png" width="75%" heigth="75%" alt="Data presentation">
 </div>
 
-5. Representation of data & reports:
+5. Add/Edit data:
 
 <div align="center">
-  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
-  <img src="./screenshots/ScreenShot_.png" width="75%" heigth="75%" alt="">
+  <img src="./screenshots/ScreenShot_6.png" width="75%" heigth="75%" alt="Add/edit data form">
+</div>
+
+6. Reports presentation:
+
+<div align="center">
+  <img src="./screenshots/ScreenShot_7.png" width="75%" heigth="75%" alt="Reports presentation">
 </div>
 
 <br>
