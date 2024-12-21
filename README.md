@@ -1,6 +1,6 @@
 ## App Description &#128209;
 
-This is a simple MPA project, based on Django4. The app provides some different reports (query) from PostgresQL, made with the Django ORM.
+This is a simple MPA project, based on Django4 and postgreSQL. The app provides different data reports.
 
 ## Launch instructions &#128190;
 
